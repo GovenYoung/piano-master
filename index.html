@@ -1,0 +1,256 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+
+<head>
+
+    <title>piano</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta http-equiv="cache-control" content="no-siteapp">
+    <meta name="render" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="Author" content="网页作者" />
+    <meta name="Copyright" content="网站版权" />
+    <meta name="keywords" content="网站关键字" />
+    <meta name="description" content="网站描述" />
+    <link rel="Shortcut Icon" href="" />
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="./js/index.js"></script>
+</head>
+
+<body>
+    <!-- 放大按钮 -->
+    <div class="bigChange iconfont">&#xe606;</div>
+    <div class="iChange iconfont">&#xe637;</div>
+    <div class="cover">
+        <ul class="iList"></ul>
+    </div>
+    <div class="center_box">
+        <ul class="keysList">
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="./js/jquery-1.11.3.min.js"></script>
+<script src="./Instruments/Piano/audio.js"></script>
+<script>
+
+    if (/(iPhone|iPad|iPod|i0s|Android)/i.test(navigator.userAgent)) {
+        //alert(navigator.userAgent);
+        // console.log('mobile')
+        $('.keysList').addClass('keysList_mobile');
+        $('.keysList').children().on("touchstart", function () {
+            //创建媒体对象
+            let snd = new Audio(piano[$(this).index()][$(this).index()]);
+            //调用play方法
+            snd.play();
+            // 动画判断
+            if ($(this).children('div').hasClass('animate')) {
+                $(this).children('div').removeClass('animate');
+            } else {
+                $(this).children('div').addClass('animate');
+            }
+        });
+        // 放大按钮
+        $('.bigChange').click(function () {
+            console.log(1)
+            $('.keysList').toggleClass('bigger_mobile');
+        });
+    }
+    else {
+        // console.log('PC')
+        // $('.keysList').children().mousedown(function () {
+        //     //创建媒体对象
+        //     let snd = new Audio(piano[$(this).index()][$(this).index()]);
+        //     //调用play方法
+        //     snd.play();
+        //     // 动画判断
+        //     if ($(this).children('div').hasClass('animate')) {
+        //         $(this).children('div').removeClass('animate');
+        //     } else {
+        //         $(this).children('div').addClass('animate');
+        //     }
+        // });
+        // // 放大按钮
+        // $('.bigChange').click(function () {
+        //     $('.keysList').toggleClass('bigger')
+        // });
+        $('body').html('<p style="font-size:20px;font-weight:bold">请使用手机打开页面</p>').css({ background: 'none', display: 'flex', 'align-items': 'center', 'justify-content': 'center' })
+        // document.getElementsByTagName('body')[0].innerHTML = '<p>1203</p>'
+    };
+
+
+
+    let url = '';
+    let li = "";
+    // 渲染乐器表格
+    var instrument = ["Bassoon", "ElectricGuitar", "Flute", "Guitar", "Harp", "Orff", "Piano", "Ukulele", "WinterPiano", "Xylophone"];
+    instrument.forEach(function (i) {
+        li += "<li>" + i + "</li>"
+    });
+
+    // function changeInstrument(x = "Piano") {
+    //     url = "./Instruments/";
+    //     url = url + x + "/";
+    // }
+    // changeInstrument();
+
+    // $('.iList').html(li);
+    // 钢琴为默认乐器
+    // $('.iList').children().eq(6).addClass('active');
+
+    // $('.iChange').click(function () {
+        // $('.cover').show(300);
+        // var time1 = setInterval(function () {
+        //     $('.iList').children().css('opacity', '1');
+        //     clearTimeout(time1)
+        // }, 400);
+    // });
+
+    // $('.iList').children().click(function () {
+    //     $(this).addClass('active').siblings().removeClass('active');
+    //     changeInstrument($(this).text())
+    //     $('.iList').children().css('opacity', '0');
+    //     var time2 = setInterval(function () {
+    //         $('.cover').hide(250);
+    //         clearTimeout(time2);
+    //     }, 200);
+    // })
+
+    // $(window).keypress(function (e) {
+    //     //获取当前的按键
+    //     var k = e.key.toLowerCase();
+    //     //针对按键进行不同的操作
+    //     switch (k) {
+    //         case "q":
+    //             $('.keysList').children().eq(0).mousedown();
+    //             break;
+    //         case "w":
+    //             $('.keysList').children().eq(1).mousedown();
+    //             break;
+    //         case "e":
+    //             $('.keysList').children().eq(2).mousedown();
+    //             break;
+    //         case "r":
+    //             $('.keysList').children().eq(3).mousedown();
+    //             break;
+    //         case "t":
+    //             $('.keysList').children().eq(4).mousedown();
+    //             break;
+    //         case "a":
+    //             $('.keysList').children().eq(5).mousedown();
+    //             break;
+    //         case "s":
+    //             $('.keysList').children().eq(6).mousedown();
+    //             break;
+    //         case "d":
+    //             $('.keysList').children().eq(7).mousedown();
+    //             break;
+    //         case "f":
+    //             $('.keysList').children().eq(8).mousedown();
+    //             break;
+    //         case "g":
+    //             $('.keysList').children().eq(9).mousedown();
+    //             break;
+    //         case "z":
+    //             $('.keysList').children().eq(10).mousedown();
+    //             break;
+    //         case "x":
+    //             $('.keysList').children().eq(11).mousedown();
+    //             break;
+    //         case "c":
+    //             $('.keysList').children().eq(12).mousedown();
+    //             break;
+    //         case "v":
+    //             $('.keysList').children().eq(13).mousedown();
+    //             break;
+    //         case "b":
+    //             $('.keysList').children().eq(14).mousedown();
+    //             break;
+    //         default:
+    //             return false;
+    //     }
+    //     return false;
+    // })
+
+</script>
+
+</html>

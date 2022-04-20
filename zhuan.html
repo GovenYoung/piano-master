@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  textarea {
+    width: 90%;
+    height: 300px;
+  }
+</style>
+
+<body>
+  <input type="file" id="fileInput"><br /><br />
+  <textarea name="" id="t" cols="30" rows="10"></textarea>
+  <p id="p"></p>
+</body>
+<script>
+  var fileInput = document.querySelector('#fileInput');
+  var p = document.getElementById('p');
+  var t = document.querySelector('#t');
+  var arr = [];
+  fileInput.onchange = function () {
+    var file = this.files[0];
+    console.log(file)
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      // arr.push(reader.result);
+      var it = p.innerHTML
+      p.innerHTML = it + '<br/>' + '{"' + file.name + '":"' + reader.result + '"}, ';
+      // console.log(reader.result);
+      // t.innerHTML = reader.result
+      // let snd = new Audio(`${reader.result}`);
+      // snd.play();
+    };
+
+  };
+
+
+</script>
+
+</html>
