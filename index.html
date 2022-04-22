@@ -26,6 +26,7 @@
     <!-- 放大按钮 -->
     <div class="bigChange iconfont">&#xe606;</div>
     <div class="iChange iconfont">&#xe637;</div>
+    <div class="version">version:1.1</div>
     <div class="cover">
         <ul class="iList"></ul>
     </div>
@@ -110,7 +111,7 @@
     </div>
 </body>
 <script src="./js/jquery-1.11.3.min.js"></script>
-<script src="./Instruments/Piano/audio.js"></script>
+<script src="./Instruments/Piano/audio2.js"></script>
 <script>
 
     if (/(iPhone|iPad|iPod|i0s|Android)/i.test(navigator.userAgent)) {
@@ -119,9 +120,13 @@
         $('.keysList').addClass('keysList_mobile');
         $('.keysList').children().on("touchstart", function () {
             //创建媒体对象
-            let snd = new Audio(piano[$(this).index()][$(this).index()]);
+            let snd = new Audio(piano[$(this).index()].data);
             //调用play方法
             snd.play();
+            snd.addEventListener("ended", () => { //音频播放完毕
+                snd.removeEventListener("ended", () => { });
+                snd = null; //销毁
+            });
             // 动画判断
             if ($(this).children('div').hasClass('animate')) {
                 $(this).children('div').removeClass('animate');

@@ -35,10 +35,10 @@
       p.innerHTML = it + '<br/>' + '{"' + file.name + '":"' + reader.result + '"}, ';
       // console.log(reader.result);
       // t.innerHTML = reader.result
-      // let snd = new Audio(`${reader.result}`);
-      // snd.play();
-    };
 
+    };
+    let snd = new Audio(`${reader.result}`);
+    snd.play();
   };
 
 
